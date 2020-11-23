@@ -1,0 +1,21 @@
+.sign-up{
+    width: 750px;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+
+    .errors{
+        color: red;
+        opacity: 0.8;
+    }
+
+    .sign-up-form{
+        margin-top: 50px;
+        font-size: 30px;
+
+        .form-group{
+            margin-bottom: 30px;
+        }
+    }
+    
+}
