@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Form, Button } from "react-bootstrap";
 
+
+import {auth, createUserDocument} from "../../firebase/firebase.util"
 import "./sign-up.styles.scss";
 
 class SignUp extends Component {
@@ -26,14 +28,41 @@ class SignUp extends Component {
 
   handleFormSubmit = async (event) => {
     event.preventDefault();
+    console.log('submit event called')
+    if(this.state.password !== this.state.confirmPassword){
+        alert("Passwords should match");
+    }
+
+    try{
+        let {user} = await auth.createUserWithEmailAndPassword(this.state.email, this.state.password);
+        // console.log('userCreds are',userAuth);
+        console.log("got user ", user.displayName, " ", user.email);
+        await createUserDocument(user,{displayName: this.state.username})
+    }
+    catch(error){
+        console.error(error.code, error.message)
+        throw error;
+    }
+
+    this.setState({
+        username: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+        email_error: '',
+        password_error: ''
+    })
+
+    
+    
   };
   render() {
     return (
       <div className="sign-up">
-        <div class="h2">I dont have an account</div>
+        <div className="h1">I dont have an account</div>
         <div>Fill up details to register an account</div>
 
-        <div class="errors">
+        <div className="errors">
           <p>{this.state.email_error}</p>
           <p>{this.state.password_error}</p>
         </div>
@@ -87,7 +116,7 @@ class SignUp extends Component {
             />
           </Form.Group>
 
-          <Button variant="warning" size="lg" className="text-center">
+          <Button type="submit" variant="warning" size="lg" className="text-center">
             Register
           </Button>
         </Form>

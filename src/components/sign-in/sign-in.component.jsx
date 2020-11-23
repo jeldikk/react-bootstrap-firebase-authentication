@@ -2,6 +2,8 @@ import React, { Component } from "react";
 
 import {Form, Button} from 'react-bootstrap'
 
+import {auth, signInWithGoogle} from "../../firebase/firebase.util"
+
 import "./sign-in.styles.scss"
 
 class SignIn extends Component {
@@ -26,7 +28,18 @@ class SignIn extends Component {
   handleFormSubmit = async (event)=>{
     event.preventDefault();
 
+    try{
+      await auth.signInWithEmailAndPassword(this.state.email,this.state.password)
+    }
+    catch(error){
+      console.error(error.code, error.message);
+      this.setState({error: error.message});
+      return;
+    }
+    
+    this.setState({email: '', password: ''});
   }
+  
   render() {
     return (
       <div>
@@ -47,7 +60,7 @@ class SignIn extends Component {
         </Form>
         <p className="h4">Other ways to SignIn with</p>
         <div className="other-options">
-          <div class="btn btn-warning w-100">Sign In with Google</div>
+          <div className="btn btn-warning w-100" onClick={signInWithGoogle}>Sign In with Google</div>
         </div>
       </div>
     );

@@ -8,7 +8,7 @@ import "./home-page.styles.scss"
 
 function HomePage() {
     return (
-        <div class="homepage">
+        <div className="homepage">
             <Container fluid="md">
            <Row>
                <Col xs={7}>
