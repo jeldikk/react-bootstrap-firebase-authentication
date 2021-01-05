@@ -14,7 +14,7 @@ import ErrorPage from "./pages/error-page/error-page.component"
 import Header from "./components/header/header.component"
 
 import {auth, createUserDocument} from "./firebase/firebase.util"
-import SignUp from './components/sign-up/sign-up.component';
+// import SignUp from './components/sign-up/sign-up.component';
 
 
 class App extends React.Component {

@@ -1,4 +1,8 @@
-# Getting Started with Create React App
+# React Bootstrap Firebase Authentication system
+
+A web application made to acquaint necessary patterns to learn for using firebase authentication system. We can even authenticate user by google, facebook or other OAuth interfaces. Thanks to google for making life more easier
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
